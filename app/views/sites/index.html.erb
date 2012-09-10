@@ -3,6 +3,7 @@
 <table>
   <tr>
     <th>Name</th>
+    <th>ID</th>
     <th>Visits</th>
     <th></th>
     <th></th>
@@ -12,6 +13,7 @@
 <% @sites.each do |site| %>
   <tr>
     <td><%= site.name %></td>
+    <td><%= site.id %></td>
     <td><%= site.visits %></td>
   </tr>
 <% end %>

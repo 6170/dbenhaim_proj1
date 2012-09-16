@@ -11,13 +11,25 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120910011117) do
+ActiveRecord::Schema.define(:version => 20120916214333) do
 
   create_table "sites", :force => true do |t|
     t.string   "name"
     t.integer  "visits"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
+  end
+
+  create_table "visits", :force => true do |t|
+    t.string   "browser"
+    t.string   "url"
+    t.string   "referer"
+    t.string   "event"
+    t.string   "data"
+    t.integer  "site_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.string   "ip_address"
   end
 
 end

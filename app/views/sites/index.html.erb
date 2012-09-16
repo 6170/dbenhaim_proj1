@@ -1,22 +1,24 @@
-<h1>Listing sites</h1>
-
-<table>
-  <tr>
-    <th>Name</th>
-    <th>ID</th>
-    <th>Visits</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @sites.each do |site| %>
-  <tr>
-    <td><%= site.name %></td>
-    <td><%= site.id %></td>
-    <td><%= site.visits %></td>
-  </tr>
-<% end %>
-</table>
-
-<br />
+<div class="row">
+  <% @sites.each do |site| %>
+  <h1><%= site.name %></h1>
+  <table class="table table-striped table-bordered table-hover">
+    <tr>
+      <th>Time</th>
+      <th>Url</th>
+      <th>Referer</th>
+      <th>Event</th>
+      <th>Data</th>
+    </tr>
+    <% site.visits.each do |visit| %>
+    <tr>
+      <td><%= visit.created_at %></td>
+      <td><%= visit.url %></td>
+      <td><%= visit.referer %></td>
+      <td><%= visit.event %></td>
+      <td><%= visit.data %></td>
+    </tr>
+    <% end %>
+  </table>
+  <br/>
+  <% end %>
+</div>

@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  browser: MyString
+  url: MyString
+  referer: MyString
+  event: MyString
+  data: MyString
+
+two:
+  browser: MyString
+  url: MyString
+  referer: MyString
+  event: MyString
+  data: MyString

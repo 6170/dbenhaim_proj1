@@ -88,10 +88,13 @@ class SitesController < ApplicationController
   def visited
     @site = Site.find_by_name(params[:name])
     if @site
-      @site.update_attributes(visits: @site.visits+1)
+      @visit = Visit.new(:site_id => @site.id, :url => request.url)
+      @visit.save
     else
-      @site = Site.new(:name => params[:name], :visits => 1)
+      @site = Site.new(:name => params[:name])
       @site.save
+      @visit = Visit.new(:site_id => @site.id, :url => request.url)
+      @visit.save
     end
   end
 end

@@ -1,0 +1,33 @@
+<h1>Listing visits</h1>
+
+<table>
+  <tr>
+    <th>Browser</th>
+    <th>Url</th>
+    <th>Referer</th>
+    <th>Event</th>
+    <th>Data</th>
+    <th>Site</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @visits.each do |visit| %>
+  <tr>
+    <td><%= visit.browser %></td>
+    <td><%= visit.url %></td>
+    <td><%= visit.referer %></td>
+    <td><%= visit.event %></td>
+    <td><%= visit.data %></td>
+    <td><%= visit.site %></td>
+    <td><%= link_to 'Show', visit %></td>
+    <td><%= link_to 'Edit', edit_visit_path(visit) %></td>
+    <td><%= link_to 'Destroy', visit, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Visit', new_visit_path %>

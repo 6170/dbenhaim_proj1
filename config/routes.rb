@@ -1,4 +1,6 @@
 DbenhaimProj1::Application.routes.draw do
+  resources :visits
+
   resources :sites
 
   # The priority is based upon order of creation:

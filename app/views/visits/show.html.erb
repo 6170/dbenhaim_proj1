@@ -1,0 +1,30 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Browser:</b>
+  <%= @visit.browser %>
+</p>
+
+<p>
+  <b>Url:</b>
+  <%= @visit.url %>
+</p>
+
+<p>
+  <b>Referer:</b>
+  <%= @visit.referer %>
+</p>
+
+<p>
+  <b>Event:</b>
+  <%= @visit.event %>
+</p>
+
+<p>
+  <b>Data:</b>
+  <%= @visit.data %>
+</p>
+
+
+<%= link_to 'Edit', edit_visit_path(@visit) %> |
+<%= link_to 'Back', visits_path %>

@@ -4,6 +4,8 @@ class CreateSites < ActiveRecord::Migration
       t.string :name
       t.integer :visits
 
+      
+      
       t.timestamps
     end
   end

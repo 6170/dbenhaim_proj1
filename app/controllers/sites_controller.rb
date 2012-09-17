@@ -100,13 +100,10 @@ class SitesController < ApplicationController
     render :text => "", :content_type => "text/plain"
   end
 
-  def resource
-    set_cors_headers
-    render :text => "OK here is your restricted resource!"
-  end
   #phase 1 "visit" method
   # finds site by name in db (or creates it) and increments visited counter
   def visited
+    set_cors_headers
     @site = Site.find_by_name(params[:name])
     if @site
       @visit = Visit.new(:site_id => @site.id, :url => request.url)

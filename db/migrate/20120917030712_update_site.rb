@@ -7,6 +7,7 @@ class UpdateSite < ActiveRecord::Migration
       
       
       t.timestamps
+    end
   end
 
   def down

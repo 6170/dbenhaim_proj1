@@ -1,15 +1,24 @@
 DbenhaimProj1::Application.routes.draw do
+  authenticated :user do
+    root :to => 'home#index'
+  end
+  root :to => "home#index"
+  devise_for :users
+  resources :users, :only => [:show, :index]
+
   resources :visits
 
   resources :sites
-
+  match 'sites/:name/visit' => 'sites#visited'
+  
+  match "/restricted/resource" => "home#resource_preflight", :constraints => { :method => "OPTIONS" }
+  match "/restricted/resource" => "home#resource"
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
   # Sample of regular route:
   #   match 'products/:id' => 'catalog#view'
   # Keep in mind you can assign values other than :controller and :action
-  match 'sites/:name/visit' => 'sites#visited'
   # match 'sites/' => 'sites#index'
   
   # Sample of named route:

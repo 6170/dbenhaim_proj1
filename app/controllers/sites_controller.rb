@@ -1,10 +1,15 @@
 class SitesController < ApplicationController
+  before_filter :get_user, :only => [:index,:new,:edit]
+  before_filter :authenticate_user!
+  def get_user
+    @current_user = current_user
+  end
+
   # GET /sites
   # GET /sites.json
   # phase 1 standard display of sites visited/# of visits
   def index
-    @sites = Site.all
-
+    @sites = Site.find_by_user_id(@current_user.id)
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @sites }
@@ -91,7 +96,7 @@ class SitesController < ApplicationController
       @visit = Visit.new(:site_id => @site.id, :url => request.url)
       @visit.save
     else
-      @site = Site.new(:name => params[:name])
+      @site = Site.new(:name => params[:name], :user_id => @current_user)
       @site.save
       @visit = Visit.new(:site_id => @site.id, :url => request.url)
       @visit.save

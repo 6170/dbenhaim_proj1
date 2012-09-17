@@ -1,5 +1,5 @@
 <div class="row">
-  <% @sites.each do |site| %>
+  <% @current_user.sites.each do |site| %>
   <h1><%= site.name %></h1>
   <table class="table table-striped table-bordered table-hover">
     <tr>

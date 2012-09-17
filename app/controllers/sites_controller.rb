@@ -8,6 +8,7 @@ class SitesController < ApplicationController
   # GET /sites.json
   # phase 1 standard display of sites visited/# of visits
   def index
+    get_user
     @sites = Site.find_by_user_id(@current_user.id)
     respond_to do |format|
       format.html # index.html.erb

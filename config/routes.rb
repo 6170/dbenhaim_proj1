@@ -9,10 +9,11 @@ DbenhaimProj1::Application.routes.draw do
   resources :visits
 
   resources :sites
-  match 'sites/:name/visit' => 'sites#visited'
-  
-  match "/restricted/resource" => "home#resource_preflight", :constraints => { :method => "OPTIONS" }
-  match "/restricted/resource" => "home#resource"
+
+  match "/sites/:name/visited" => "sites#resource_preflight", :constraints => { :method => "OPTIONS" }
+  match "sites/:name/visit" => "sites#visited"
+
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

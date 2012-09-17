@@ -3,16 +3,18 @@
     <h3>Embedded Code</h3>
     <article>
     	<h4>Simply embed this code at the bottom of your page</h4>
-        <pre><code class="javascript">var startTime;
+        <pre><code class="javascript">var sTime;
 window.onload = function() {
-startTime = new Date();
+sTime = new Date();
 var xhr = new XMLHttpRequest();
 xhr.open('GET', 'http://proj1-6170.herokuapp.com/sites/'+window.location.hostname+'/visit?account_hash=<%= @current_user.account_hash %>', true);
 
 xhr.send('');
 }
 window.onbeforeunload = function() {
-endTime = new Date(); totalTime = startTime-endTime;
+var eTime, tTime;
+eTime = new Date();
+tTime = sTime-eTime;
 var xhr = new XMLHttpRequest();
 xhr.open('GET', 'http://proj1-6170.herokuapp.com/sites/'+window.location.hostname+'/visit?account_hash=<%= @current_user.account_hash %>&time='+totalTime, true);
 

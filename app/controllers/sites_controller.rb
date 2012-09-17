@@ -1,6 +1,5 @@
 class SitesController < ApplicationController
   before_filter :get_user, :only => [:index,:new,:edit]
-  before_filter :authenticate_user!
   def get_user
     @current_user = current_user
   end
@@ -109,7 +108,8 @@ class SitesController < ApplicationController
       @visit = Visit.new(:site_id => @site.id, :url => request.url)
       @visit.save
     else
-      @site = Site.new(:name => params[:name], :user_id => @current_user)
+      user_id = User.find_by_account_hash(params[:account_hash])
+      @site = Site.new(:name => params[:name], :user_id => user_id)
       @site.save
       @visit = Visit.new(:site_id => @site.id, :url => request.url)
       @visit.save

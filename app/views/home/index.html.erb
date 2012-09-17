@@ -7,7 +7,7 @@
 window.onload = function() {
 sTime = new Date();
 var xhr = new XMLHttpRequest();
-xhr.open('GET', 'http://proj1-6170.herokuapp.com/sites/'+window.location.hostname+'/visit?account_hash=<%= @current_user.account_hash %>', true);
+xhr.open('GET', 'http://proj1-6170.herokuapp.com/sites/<%= @current_user.id %>/visit?account_hash=<%= @current_user.account_hash %>', true);
 
 xhr.send('');
 }
@@ -16,7 +16,7 @@ var eTime, tTime;
 eTime = new Date();
 tTime = sTime-eTime;
 var xhr = new XMLHttpRequest();
-xhr.open('GET', 'http://proj1-6170.herokuapp.com/sites/'+window.location.hostname+'/visit?account_hash=<%= @current_user.account_hash %>&time='+totalTime, true);
+xhr.open('GET', 'http://proj1-6170.herokuapp.com/sites/<%= @current_user.id %>/visit?account_hash=<%= @current_user.account_hash %>&time='+totalTime, true);
 
 xhr.send('');
 return; 

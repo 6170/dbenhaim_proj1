@@ -9,7 +9,8 @@ class SitesController < ApplicationController
   # GET /sites.json
   # phase 1 standard display of sites visited/# of visits
   def index
-    @sites = Site.find_by_user_id(@current_user.id)
+    user_id = User.find_by_account_hash(params[:account_hash])
+    @sites = Site.find_by_user_id(user_id)
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @sites }

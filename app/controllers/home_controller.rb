@@ -1,6 +1,10 @@
 class HomeController < ApplicationController
+	before_filter :get_user, :only => [:index]
+	before_filter :authenticate_user!
+	def get_user
+    	@current_user = current_user
+  	end
 	def index
-  		@users = User.all
 	end
 	def set_cors_headers
 		headers["Access-Control-Allow-Origin"] = "*"

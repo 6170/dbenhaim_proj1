@@ -3,19 +3,21 @@
     <h3>Embedded Code</h3>
     <article>
     	<h4>Simply embed this code at the bottom of your page</h4>
-        <pre><code class="html">xhr.onreadystatechange = function() {
-	if (xhr.readyState == 1) {
-		console.log('The call to open(...) succeeded.');
-	}
-	if (xhr.readyState == 2) {
-		console.log('The call to send(...) succeeded.  Waiting for response...');
-	}
-	if (xhr.readyState == 3) {
-		console.log('The response is coming in!');
-	}
-	if (xhr.readyState == 4) {
-		console.log('We now have the complete response: ' + xhr.response);
-	}
+        <pre><code class="javascript">var startTime;
+window.onload = function() {
+startTime = new Date();
+var xhr = new XMLHttpRequest();
+xhr.open('GET', 'http://proj1-6170.herokuapp.com/sites/'+window.location.hostname+'/visit?account_hash=<%= @current_user.account_hash %>', true);
+
+xhr.send('');
+}
+window.onbeforeunload = function() {
+endTime = new Date(); totalTime = startTime-endTime;
+var xhr = new XMLHttpRequest();
+xhr.open('GET', 'http://proj1-6170.herokuapp.com/sites/'+window.location.hostname+'/visit?account_hash=<%= @current_user.account_hash %>&time='+totalTime, true);
+
+xhr.send('');
+return; 
 }</code></pre>
     </article>
 </section>

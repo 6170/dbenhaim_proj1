@@ -14,9 +14,9 @@ xhr.send('');
 window.onbeforeunload = function() {
 var eTime, tTime;
 eTime = new Date();
-tTime = sTime-eTime;
+tTime = eTime-sTime;
 var xhr = new XMLHttpRequest();
-xhr.open('GET', 'http://proj1-6170.herokuapp.com/sites/<%= @current_user.id %>/visited?account_hash=<%= @current_user.account_hash %>&time='+tTime, true);
+xhr.open('GET', 'http://proj1-6170.herokuapp.com/sites/<%= @current_user.id %>/visited?account_hash=<%= @current_user.account_hash %>&time='+tTime+'&data='+data, true);
 
 xhr.send('');
 return; 

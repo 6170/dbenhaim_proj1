@@ -119,12 +119,9 @@ class SitesController < ApplicationController
   def visited
     set_cors_headers
     geo = check_geo(request.remote_ip)
-    puts geo
     location = geo['city']+', '+geo['region_code']
-    puts location
     referer = URI(request.referer)
     @site = Site.find_by_name(referer.host)
-    location = ""
     if @site
       @visit = Visit.new(:site_id => @site.id, :url => referer.path,:ip_address => request.remote_ip, :location => location)
       @visit.save

@@ -101,11 +101,11 @@ class SitesController < ApplicationController
     render :text => "", :content_type => "text/plain"
   end
 
-  def check_geo
+  def check_geo(ip_address)
     require 'net/http'
     require 'json'
 
-    url = URI.parse('http://freegeoip.net/json/'+params[:ip_address])
+    url = URI.parse('http://freegeoip.net/json/'+ip_address)
     req = Net::HTTP::Get.new(url.path)
     res = Net::HTTP.start(url.host, url.port) {|http|
       http.request(req)

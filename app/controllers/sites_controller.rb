@@ -111,12 +111,11 @@ class SitesController < ApplicationController
       user_id = User.find_by_account_hash(params[:account_hash])
       @site = Site.new(:name => params[:name], :user_id => user_id)
       @site.save
-      @visit = Visit.new(:site_id => @site.id, :url => request.uri, :referer => request.path, :duration => params[:time])
+      @visit = Visit.new(:site_id => @site.id, :url => request.uri,:ip_address => request.remote_ip, :referer => request.path, :duration => params[:time])
       @visit.save
     end
     respond_to do |format|
         render :text => "visit recorded", :content_type => "text/plain"
-      end
     end
   end
 end

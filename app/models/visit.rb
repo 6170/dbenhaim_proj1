@@ -1,4 +1,4 @@
 class Visit < ActiveRecord::Base
-  attr_accessible :browser, :data, :event, :referer, :url, :site_id, :ip_address, :duration
+  attr_accessible :browser, :data, :event, :referer, :url, :site_id, :ip_address, :location
   belongs_to :site
 end

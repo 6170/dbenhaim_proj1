@@ -6,21 +6,19 @@
     <tr>
       <th>Time</th>
       <th>Url</th>
-      <th>Referer</th>
       <th>Event</th>
       <th>Data</th>
       <th>IP Address</th>
-      <th>Visit Duration</th>
+      <th>Location</th>
     </tr>
     <% site.visits.each do |visit| %>
     <tr>
       <td><%= visit.created_at %></td>
       <td><%= visit.url %></td>
-      <td><%= visit.referer %></td>
       <td><%= visit.event %></td>
       <td><%= visit.data %></td>
       <td><%= visit.ip_address %></td>
-      <td><%= visit.duration %></td>
+      <td><%= visit.location %></td>
     </tr>
     <% end %>
   </table>

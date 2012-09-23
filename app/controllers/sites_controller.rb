@@ -101,41 +101,36 @@ class SitesController < ApplicationController
     render :text => "", :content_type => "text/plain"
   end
 
-  def post_test
+  def check_geo
     require 'net/http'
     require 'json'
 
-    @host = 'localhost'
-    @port = '8099'
-
-    @path = "/posts"
-
-    @body ={
-      "bbrequest" => "BBTest",
-      "reqid" => "44",
-      "data" => {"name" => "test"}
-    }.to_json
-
-    request = Net::HTTP::Post.new(@path, initheader = {'Content-Type' =>'application/json'})
-    request.body = @body
-    response = Net::HTTP.new(@host, @port).start {|http| http.request(request) }
-    puts "Response #{response.code} #{response.message}: #{response.body}"
+    url = URI.parse('http://freegeoip.net/json/'+params[:ip_address])
+    req = Net::HTTP::Get.new(url.path)
+    res = Net::HTTP.start(url.host, url.port) {|http|
+      http.request(req)
+    }
+    @output = JSON(res.body)
+    @output
   end
 
   #phase 1 "visit" method
   # finds site by name in db (or creates it) and increments visited counter
   def visited
     set_cors_headers
+    geo = check_geo(request.remote_ip)
+    location = geo.city+', '+geo.region_code
     referer = URI(request.referer)
     @site = Site.find_by_name(referer.host)
+    location = ""
     if @site
-      @visit = Visit.new(:site_id => @site.id, :url => referer.host,:ip_address => request.remote_ip, :duration => params[:time])
+      @visit = Visit.new(:site_id => @site.id, :url => referer.path,:ip_address => request.remote_ip, :location => location)
       @visit.save
     else
       user_id = params[:id]
       @site = Site.new(:name => referer.host, :user_id => user_id)
       @site.save
-      @visit = Visit.new(:site_id => @site.id, :url => referer.host,:ip_address => request.remote_ip, :duration => params[:time])
+      @visit = Visit.new(:site_id => @site.id, :url => referer.path,:ip_address => request.remote_ip, :location => location)
       @visit.save
     end
     render :text => "visit recorded", :content_type => "text/plain"

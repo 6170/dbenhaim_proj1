@@ -119,7 +119,7 @@ class SitesController < ApplicationController
   def visited
     set_cors_headers
     geo = check_geo(request.remote_ip)
-    location = geo.city+', '+geo.region_code
+    location = geo['city']+', '+geo['region_code']
     referer = URI(request.referer)
     @site = Site.find_by_name(referer.host)
     location = ""

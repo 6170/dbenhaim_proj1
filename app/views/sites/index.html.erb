@@ -5,7 +5,7 @@
     <div class="accordion-group">
       <div class="accordion-heading">
         <h1>
-          <a class="accordion-toggle collapsed in" rel="tooltip" data-placement="top" data-original-title="Click to expand" data-toggle="collapse" data-parent="#accordion2" href="#collapse<%= site.id %>"><%= site.name %></a>
+          <a class="accordion-toggle collapsed in" rel="tooltip" data-placement="left" data-original-title="Click to expand" data-toggle="collapse" data-parent="#accordion2" href="#collapse<%= site.id %>"><%= site.name %></a>
         </h1>
       </div>
       <div class="accordion-body collapse" id="collapse<%= site.id %>">
@@ -26,7 +26,7 @@
               <td><%= visit.event %></td>
               <td><%= visit.data %></td>
               <td><%= visit.ip_address %></td>
-              <td><a href="#" rel="popover" data-content="<img src=&quot;http://maps.googleapis.com/maps/api/staticmap?center=<%= h visit.location %>&zoom=14&size=512x512&maptype=roadmap&sensor=false&quot; />" data-original-title="<%= visit.location %>"><%= visit.location %></a></td>
+              <td><a href="#" rel="popover" data-content="<img src=&quot;http://maps.googleapis.com/maps/api/staticmap?center=<%= visit.location %>&zoom=14&size=512x512&maptype=roadmap&sensor=false&quot; />" data-original-title="<%= visit.location %>"><%= visit.location %></a></td>
             </tr>
             <% end %>
           </table>
@@ -36,3 +36,7 @@
     <% end %>
   </div>
 </div>
+<script type="text/javascript">
+$("a[rel=tooltip]").tooltip();
+$("a[rel=popover]").popover({trigger:'hover'});
+</script>

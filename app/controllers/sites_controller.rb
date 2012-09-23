@@ -121,7 +121,7 @@ class SitesController < ApplicationController
     geo = check_geo(request.remote_ip)
     location = geo['city']+', '+geo['region_code']
     referer = URI(request.referer)
-    @site = Site.find_by_name(referer.host)
+    @site = Site.find_by_name_and_user_id(referer.host, params[:id])
     if @site
       @visit = Visit.new(:site_id => @site.id, :url => referer.path,:ip_address => request.remote_ip, :location => location, :event => params[:event], :data => params[:data])
       @visit.save

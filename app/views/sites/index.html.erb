@@ -4,7 +4,9 @@
     <% @current_user.sites.each do |site| %>
     <div class="accordion-group">
       <div class="accordion-heading">
-        <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion2" href="#collapse<%= site.id %>"><h1><%= site.name %></h1></a>
+        <h1>
+          <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion2" href="#collapse<%= site.id %>"><%= site.name %></a>
+        </h1>
       </div>
       <div class="accordion-body collapse">
         <div class="accordion-inner">

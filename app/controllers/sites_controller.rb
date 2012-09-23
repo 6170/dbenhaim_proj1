@@ -101,6 +101,27 @@ class SitesController < ApplicationController
     render :text => "", :content_type => "text/plain"
   end
 
+  def post_test
+    require 'net/http'
+    require 'json'
+
+    @host = 'localhost'
+    @port = '8099'
+
+    @path = "/posts"
+
+    @body ={
+      "bbrequest" => "BBTest",
+      "reqid" => "44",
+      "data" => {"name" => "test"}
+    }.to_json
+
+    request = Net::HTTP::Post.new(@path, initheader = {'Content-Type' =>'application/json'})
+    request.body = @body
+    response = Net::HTTP.new(@host, @port).start {|http| http.request(request) }
+    puts "Response #{response.code} #{response.message}: #{response.body}"
+  end
+
   #phase 1 "visit" method
   # finds site by name in db (or creates it) and increments visited counter
   def visited
@@ -112,7 +133,7 @@ class SitesController < ApplicationController
       @visit.save
     else
       user_id = params[:id]
-      @site = Site.new(:name => params[:name], :user_id => user_id)
+      @site = Site.new(:name => referer.host, :user_id => user_id)
       @site.save
       @visit = Visit.new(:site_id => @site.id, :url => referer.host,:ip_address => request.remote_ip, :duration => params[:time])
       @visit.save

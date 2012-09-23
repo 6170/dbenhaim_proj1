@@ -105,7 +105,7 @@ class SitesController < ApplicationController
     set_cors_headers
     @site = Site.find_by_name(params[:name])
     if @site
-      @visit = Visit.new(:site_id => @site.id, :url => request.url)
+      @visit = Visit.new(:site_id => @site.id, :url => request.uri,:ip_address => request.remote_ip, :referer => request.path, :duration => params[:time])
       @visit.save
     else
       user_id = User.find_by_account_hash(params[:account_hash])

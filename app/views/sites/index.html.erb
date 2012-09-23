@@ -26,7 +26,7 @@
               <td><%= visit.event %></td>
               <td><%= visit.data %></td>
               <td><%= visit.ip_address %></td>
-              <td><a href="#" rel="popover" data-content="<img src="http://maps.googleapis.com/maps/api/staticmap?center=<%= visit.location %>&zoom=14&size=512x512&maptype=roadmap&sensor=false" />" data-original-title="<%= visit.location %>"><%= visit.location %></a></td>
+              <td><a href="#" rel="popover" data-content="<img src='http://maps.googleapis.com/maps/api/staticmap?center=<%= visit.location %>&zoom=14&size=512x512&maptype=roadmap&sensor=false' />" data-original-title="<%= visit.location %>"><%= visit.location %></a></td>
             </tr>
             <% end %>
           </table>

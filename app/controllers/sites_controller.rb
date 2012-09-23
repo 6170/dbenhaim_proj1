@@ -105,14 +105,13 @@ class SitesController < ApplicationController
   # finds site by name in db (or creates it) and increments visited counter
   def visited
     set_cors_headers
-    puts "cats"+request.referer
     referer = URI(request.referer)
     @site = Site.find_by_name(referer.host)
     if @site
       @visit = Visit.new(:site_id => @site.id, :url => referer.path,:ip_address => request.remote_ip, :duration => params[:time])
       @visit.save
     else
-      user_id = User.find_by_id(params[:id])
+      user_id = params[:id]
       @site = Site.new(:name => params[:name], :user_id => user_id)
       @site.save
       @visit = Visit.new(:site_id => @site.id, :url => referer.path,:ip_address => request.remote_ip, :duration => params[:time])

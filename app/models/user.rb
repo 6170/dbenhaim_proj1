@@ -1,8 +1,4 @@
 class User < ActiveRecord::Base
-  after_initialize :random_hash
-  def random_hash()
-  	self.account_hash = (0...50).map{ ('a'..'z').to_a[rand(26)] }.join
-  end
   # Include default devise modules. Others available are:
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable

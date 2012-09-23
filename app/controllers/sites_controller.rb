@@ -108,13 +108,13 @@ class SitesController < ApplicationController
     referer = URI(request.referer)
     @site = Site.find_by_name(referer.host)
     if @site
-      @visit = Visit.new(:site_id => @site.id, :url => referer.path,:ip_address => request.remote_ip, :duration => params[:time])
+      @visit = Visit.new(:site_id => @site.id, :url => referer.host,:ip_address => request.remote_ip, :duration => params[:time])
       @visit.save
     else
       user_id = params[:id]
       @site = Site.new(:name => params[:name], :user_id => user_id)
       @site.save
-      @visit = Visit.new(:site_id => @site.id, :url => referer.path,:ip_address => request.remote_ip, :duration => params[:time])
+      @visit = Visit.new(:site_id => @site.id, :url => referer.host,:ip_address => request.remote_ip, :duration => params[:time])
       @visit.save
     end
     render :text => "visit recorded", :content_type => "text/plain"

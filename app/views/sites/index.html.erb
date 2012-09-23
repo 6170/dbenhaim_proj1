@@ -1,10 +1,10 @@
 <div class="row">
   <h1>Your Tracking Data</h1>
-  <div class="accordian" id="sites">
+  <div class="accordian" id="accordion2">
     <% @current_user.sites.each do |site| %>
     <div class="accordian-group">
       <div class="accordion-heading">
-        <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#sites" href="#collapse"><h1><%= site.name %></h1></a>
+        <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion2" href="#collapse<%= site.id %>"><h1><%= site.name %></h1></a>
       </div>
       <div class="accordian-body collapse">
         <div class="accordian-inner">

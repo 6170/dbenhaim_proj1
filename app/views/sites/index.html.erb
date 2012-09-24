@@ -59,7 +59,7 @@
 $("a[rel=tooltip]").tooltip();
 $("a[rel=popover]").popover({trigger:'hover'});
 (function( $ ) {
-  $.fn.davidTracking = function(options) {
+  $.fn.davidTracker = function(options) {
     var tracker = {};
     tracker.settings = $.extend({
       'visitor' : 'Anon User',
@@ -79,6 +79,6 @@ $("a[rel=popover]").popover({trigger:'hover'});
     });
     return tracker;
   };
+  tracker = $().davidTracker({'visitor':'davidbenhaim', 'event':'default event','data':'any extra data'});
 })( jQuery );
-tracker = $().davidTracker({'visitor':'davidbenhaim', 'event':'default event','data':'any extra data'});
 </script>

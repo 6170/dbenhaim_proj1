@@ -121,6 +121,9 @@ class SitesController < ApplicationController
     geo = check_geo(request.remote_ip)
     location = geo['city']+', '+geo['region_code']
     referer = URI(request.referer)
+    if !params[:visitor]
+      params[:visitor] = "Anon User"
+    end
     @site = Site.find_by_name_and_user_id(referer.host, params[:id])
     if @site
       @visitor = Visitor.find_by_name_and_site_id(params[:visitor], @site.id)

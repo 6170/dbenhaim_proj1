@@ -126,6 +126,7 @@ class SitesController < ApplicationController
       @visitor = Visitor.find_by_name(params[:visitor])
       if !@visitor
         @visitor = Visitor.new(:site_id => @site.id, :name => params[:visitor])
+        @visitor.save
       end
       @visit = Visit.new(:visitor_id => @visitor.id, :url => referer.path, :ip_address => request.remote_ip, :location => location, :event => params[:event], :data => params[:data])
       @visit.save
@@ -134,6 +135,7 @@ class SitesController < ApplicationController
       @site = Site.new(:name => referer.host, :user_id => user_id)
       @site.save
       @visitor = Visitor.new(:site_id => @site.id, :name => params[:visitor])
+      @visitor.save
       @visit = Visit.new(:visitor_id => @visitor.id, :url => referer.path,:ip_address => request.remote_ip, :location => location, :event => params[:event], :data => params[:data])
       @visit.save
     end

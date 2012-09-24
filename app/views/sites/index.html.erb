@@ -14,7 +14,6 @@
             <% site.visitors.each do |visitor| %>
             <li>
               <div class="accordion" id="accordion-visitor-<% visitor.id %>">
-                <% visitor.visits.each do |visit| %>
                 <div class="accordion-group">
                   <div class="accordion-heading">
                     <h1>
@@ -46,7 +45,6 @@
                     </div>
                   </div>
                 </div>
-              <% end %>
               </div>
             </li>
             <% end %>

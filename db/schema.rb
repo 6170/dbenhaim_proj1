@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120923212209) do
+ActiveRecord::Schema.define(:version => 20120924010703) do
 
   create_table "roles", :force => true do |t|
     t.string   "name"
@@ -52,6 +52,13 @@ ActiveRecord::Schema.define(:version => 20120923212209) do
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
 
+  create_table "visitors", :force => true do |t|
+    t.string   "name"
+    t.integer  "site_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "visits", :force => true do |t|
     t.string   "browser"
     t.string   "url"
@@ -65,6 +72,7 @@ ActiveRecord::Schema.define(:version => 20120923212209) do
     t.integer  "duration"
     t.string   "location"
     t.string   "location_full"
+    t.integer  "visitor_id"
   end
 
 end

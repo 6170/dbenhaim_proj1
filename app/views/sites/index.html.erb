@@ -10,26 +10,47 @@
       </div>
       <div class="accordion-body collapse" id="collapse<%= site.id %>">
         <div class="accordion-inner">
-          <table class="table table-striped table-bordered table-hover">
-            <tr>
-              <th>Time</th>
-              <th>Url</th>
-              <th>Event</th>
-              <th>Data</th>
-              <th>IP Address</th>
-              <th>Location</th>
-            </tr>
-            <% site.visits.each do |visit| %>
-            <tr>
-              <td><%= visit.created_at %></td>
-              <td><%= visit.url %></td>
-              <td><%= visit.event %></td>
-              <td><%= visit.data %></td>
-              <td><%= visit.ip_address %></td>
-              <td><a href="#" rel="popover" data-content="<img src=&quot;http://maps.googleapis.com/maps/api/staticmap?center=<%= visit.location %>&zoom=14&size=512x512&maptype=roadmap&sensor=false&quot; />" data-original-title="<%= visit.location %>"><%= visit.location %></a></td>
-            </tr>
+          <ul>
+            <% site.visitors.each do |visitor| %>
+            <li>
+              <div class="accordion" id="accordion-visitor-<% visitor.id %>">
+                <% visitor.visits.each do |visit| %>
+                <div class="accordion-group">
+                  <div class="accordion-heading">
+                    <h1>
+                      <a class="accordion-toggle collapsed in" rel="tooltip" data-placement="left" data-original-title="Click to expand" data-toggle="collapse" data-parent="#accordion-visitor-<% visitor.id %>" href="#collapse<%= visitor.id %>"><%= visitor.name %></a>
+                    </h1>
+                  </div>
+                  <div class="accordion-body collapse" id="collapse<%= visitor.id %>">
+                    <div class="accordion-inner">
+                      <table class="table table-striped table-bordered table-hover">
+                        <tr>
+                          <th>Time</th>
+                          <th>Url</th>
+                          <th>Event</th>
+                          <th>Data</th>
+                          <th>IP Address</th>
+                          <th>Location</th>
+                        </tr>
+                        <% visitor.visits.each do |visit| %>
+                        <tr>
+                          <td><%= visit.created_at %></td>
+                          <td><%= visit.url %></td>
+                          <td><%= visit.event %></td>
+                          <td><%= visit.data %></td>
+                          <td><%= visit.ip_address %></td>
+                          <td><a href="#" rel="popover" data-content="<img src=&quot;http://maps.googleapis.com/maps/api/staticmap?center=<%= visit.location %>&zoom=14&size=512x512&maptype=roadmap&sensor=false&quot; />" data-original-title="<%= visit.location %>"><%= visit.location %></a></td>
+                        </tr>
+                        <% end %>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              <% end %>
+              </div>
+            </li>
             <% end %>
-          </table>
+          </ul>
         </div>
       </div>
     </div>

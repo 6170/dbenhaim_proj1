@@ -6,8 +6,6 @@ DbenhaimProj1::Application.routes.draw do
   devise_for :users
   resources :users, :only => [:show, :index]
 
-  resources :visits
-
   resources :sites
 
   match "/sites/:id/visited" => "sites#resource_preflight", :constraints => { :method => "OPTIONS" }

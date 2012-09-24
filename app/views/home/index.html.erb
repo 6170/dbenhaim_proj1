@@ -1,4 +1,4 @@
-<h1>How to Use</h1>
+<h1>How to Use (requires jQuery)</h1>
 <section id="open-source">
     <h3>jQuery Plugin</h3>
     <article>
@@ -11,7 +11,6 @@
       'event' : 'Started',
       'data'  : 'None'
     	}, options);
-  	tracker.sTime = new Date();
   	$.ajax('http://proj1-6170.herokuapp.com/sites/<%= @current_user.id %>/visited?event='+tracker.settings.event+'&data='+tracker.settings.data+'&visitor='+tracker.settings.visitor);
   	$('.trackable').each(function() {
   		$(this).click(function(){
@@ -31,12 +30,33 @@
 });
 </code></pre>
 	<h4>If you have a single page app and you need to track events such as clicks add a '.trackable' class</h4>
-	<pre><code class="html">&lt;h1&gt;
-    &lt;a class=&quot;accordion-toggle collapsed in trackable&quot; rel=&quot;tooltip&quot; data-data=&quot;tracking data here&quot; data-event=&quot;tracking event here&quot; data-placement=&quot;left&quot; data-original-title=&quot;Click to expand&quot; data-toggle=&quot;collapse&quot; data-parent=&quot;#accordion-visitor-&quot; href=&quot;#collapse1&quot;&gt;USERNAME&lt;/a&gt;
-&lt;/h1&gt;
+	<pre><code class="html">&lt;a class=&quot;btn btn-primary trackable&quot; data-event=&quot;You Clicked the Demo Button!&quot; data-data=&quot;This is extra data&quot;&gt;Click Me!&lt;/a&gt;
 </code></pre>
+	<a class="btn btn-primary trackable" data-event="You Clicked the Demo Button!" data-data="This is extra data">Click Me!</a>
     </article>
 </section>
 <br>
 <br>
 <br>
+<script type="text/javascript">
+(function( $ ) {
+  $.fn.davidTracker = function(options) {
+    var tracker = {};
+    tracker.settings = $.extend({
+      'visitor' : 'Anon User',
+      'event' : 'Started',
+      'data'  : 'None'
+        }, options);
+    $('.trackable').each(function() {
+        $(this).click(function(){
+            $.ajax('http://proj1-6170.herokuapp.com/sites/<%= @current_user.id %>/visited?event='+$(this).data('event')+'&data='+$(this).data('data')+'&visitor='+tracker.settings.visitor);
+        });
+    })
+    $(document).unload(function() {
+        $.ajax('http://proj1-6170.herokuapp.com/sites/<%= @current_user.id %>/visited?event=Unload&data=None&visitor='+tracker.settings.visitor);
+    });
+    return tracker;
+  };
+  tracker = $().davidTracker({'visitor':'davidbenhaim', 'event':'default event','data':'any extra data'});
+})( jQuery );
+</script>

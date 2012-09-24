@@ -17,7 +17,7 @@
                 <div class="accordion-group">
                   <div class="accordion-heading">
                     <h1>
-                      <a class="accordion-toggle collapsed in trackable" data-data="visitor <% visitor.id %>" rel="tooltip" data-placement="left" data-original-title="Click to expand" data-toggle="collapse" data-parent="#accordion-visitor-<% visitor.id %>" href="#collapse<%= visitor.id %>"><%= visitor.name %></a>
+                      <a class="accordion-toggle collapsed in" rel="tooltip" data-placement="left" data-original-title="Click to expand" data-toggle="collapse" data-parent="#accordion-visitor-<% visitor.id %>" href="#collapse<%= visitor.id %>"><%= visitor.name %></a>
                     </h1>
                   </div>
                   <div class="accordion-body collapse" id="collapse<%= visitor.id %>">
@@ -58,27 +58,4 @@
 <script type="text/javascript">
 $("a[rel=tooltip]").tooltip();
 $("a[rel=popover]").popover({trigger:'hover'});
-(function( $ ) {
-  $.fn.davidTracker = function(options) {
-    var tracker = {};
-    tracker.settings = $.extend({
-      'visitor' : 'Anon User',
-      'event' : 'Started',
-      'data'  : 'None'
-        }, options);
-    tracker.sTime = new Date();
-    console.log('here');
-    $.ajax('http://proj1-6170.herokuapp.com/sites/6/visited?event='+tracker.settings.event+'&data='+tracker.settings.data+'&visitor='+tracker.settings.visitor);
-    $('.trackable').each(function() {
-        $(this).click(function(){
-            $.ajax('http://proj1-6170.herokuapp.com/sites/6/visited?event='+$(this).data('event')+'&data='+$(this).data('data')+'&visitor='+tracker.settings.visitor);
-        });
-    })
-    $(document).unload(function() {
-        $.ajax('http://proj1-6170.herokuapp.com/sites/6/visited?event=Unload&data=None&visitor='+tracker.settings.visitor);
-    });
-    return tracker;
-  };
-  tracker = $().davidTracker({'visitor':'davidbenhaim', 'event':'default event','data':'any extra data'});
-})( jQuery );
 </script>

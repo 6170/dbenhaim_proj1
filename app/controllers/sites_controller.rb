@@ -123,7 +123,7 @@ class SitesController < ApplicationController
     referer = URI(request.referer)
     @site = Site.find_by_name_and_user_id(referer.host, params[:id])
     if @site
-      @visitor = Visitor.find_by_name(params[:visitor])
+      @visitor = Visitor.find_by_name_and_site_id(params[:visitor], @site.id)
       if !@visitor
         @visitor = Visitor.new(:site_id => @site.id, :name => params[:visitor])
         @visitor.save

@@ -1,0 +1,37 @@
+## Summary assessment from user’s perspective
+#### Positve
+- I'm proud of the UI. 
+- I believe the way I set up the site leads to an intuitive user experience. 
+- I'm happy I looked at this project as if I was putting out a product vs a class project. This motivated me to make something usable by anyone and not just the course staff.  
+- I built the home page the way I like other api/tool homepages to be built.
+
+#### Negative
+
+- I didn't have time to build the visualizions I wanted to build for viewing event data
+- The nice UI doesn't really lend itself to viewing the data :P
+ 
+
+## Summary assessment from developer’s perspective
+- I didn't keep a clean codebase. Because the project was broken down into checkpoints and I was still learning rails I didn't really bother to keep proper coding ediquette and comment my code. I also didn't clean out unused code. 
+
+- The ```.trackable``` class only works for elements that exist before the js runs the first time
+
+- I left most of my routes open but didn't link to them. Someone who has seen my code can access the /new /edit links for most of my objects. This is because I am new with rails
+
+- I don't do comprehensive checks when selecting models from the db
+
+## Most and least successful decisions
+### Most
+I like that I built something usable with a clean interface. I like that I broke the problem down in a vertical way (Focus on site users usage of the site) vs. a horizontal way (aggregating raw usage stats for the general case). 
+
+### Least
+I had some sloppy code that I wasn't too proud of. Some of the model definitions aren't clear. 
+
+
+## Analysis of design faults in terms of design principles
+The sloppy code comes from a stop and go work style. I didn't know rails going into this so I really had no idea what files did what or how to lay out my code. As I continued to work I got better about seperating my code. I didn't go back and retroactively clean my code either. 
+
+## Priorities for improvement
+1. Fix security issues
+2. Clean up code base
+3. Make data more readable. 
